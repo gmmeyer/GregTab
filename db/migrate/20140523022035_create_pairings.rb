@@ -13,6 +13,7 @@ class CreatePairings < ActiveRecord::Migration
       t.integer :speaker_2_rank
       t.integer :speaker_3_rank
       t.integer :speaker_4_rank
+      t.integer :winner
 
       t.timestamps
     end
