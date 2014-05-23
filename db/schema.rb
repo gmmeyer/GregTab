@@ -11,79 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523102514) do
+ActiveRecord::Schema.define(version: 0) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "debaters", force: true do |t|
-    t.string   "name"
-    t.integer  "school_id"
-    t.integer  "team_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "judges", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "pairings", force: true do |t|
-    t.integer  "round_id"
-    t.integer  "team_1_id"
-    t.integer  "team_2_id"
-    t.integer  "winner_id"
-    t.integer  "speaker_1_points"
-    t.integer  "speaker_2_points"
-    t.integer  "speaker_3_points"
-    t.integer  "speaker_4_points"
-    t.integer  "speaker_1_rank"
-    t.integer  "speaker_2_rank"
-    t.integer  "speaker_3_rank"
-    t.integer  "speaker_4_rank"
-    t.integer  "winner"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "rounds", force: true do |t|
-    t.integer  "round_number"
-    t.boolean  "outround"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "schools", force: true do |t|
-    t.integer  "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "scratches", force: true do |t|
-    t.integer  "judge_id"
-    t.integer  "team_id"
-    t.boolean  "affiliation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "teams", force: true do |t|
-    t.string   "name"
-    t.integer  "school_id"
-    t.integer  "team_1_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

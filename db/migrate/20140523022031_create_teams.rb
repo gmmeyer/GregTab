@@ -7,5 +7,6 @@ class CreateTeams < ActiveRecord::Migration
 
       t.timestamps
     end
+    
   end
 end
