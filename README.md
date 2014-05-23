@@ -11,6 +11,8 @@ Right now, it won't do anything, anyway. But, some day it might and I might not 
 
 
 ##License
-The source code is liscensed under the [GPL Liscense][/LICENSE].
+
+The source code is liscensed under the [GPL Liscense](/LICENSE).
+
 ---
-Developed by [Greg Meyer][http://gmmeyer.com]
+Developed by [Greg Meyer](http://gmmeyer.com)
