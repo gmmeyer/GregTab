@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523024138) do
+ActiveRecord::Schema.define(version: 20140523102514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20140523024138) do
     t.integer  "round_id"
     t.integer  "team_1_id"
     t.integer  "team_2_id"
+    t.integer  "winner_id"
+    t.integer  "speaker_1_points"
+    t.integer  "speaker_2_points"
+    t.integer  "speaker_3_points"
+    t.integer  "speaker_4_points"
+    t.integer  "speaker_1_rank"
+    t.integer  "speaker_2_rank"
+    t.integer  "speaker_3_rank"
+    t.integer  "speaker_4_rank"
+    t.integer  "winner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,9 +61,18 @@ ActiveRecord::Schema.define(version: 20140523024138) do
     t.datetime "updated_at"
   end
 
+  create_table "scratches", force: true do |t|
+    t.integer  "judge_id"
+    t.integer  "team_id"
+    t.boolean  "affiliation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teams", force: true do |t|
     t.string   "name"
     t.integer  "school_id"
+    t.integer  "team_1_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
