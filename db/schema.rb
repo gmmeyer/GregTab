@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523121810) do
+ActiveRecord::Schema.define(version: 20140523222734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,8 +34,6 @@ ActiveRecord::Schema.define(version: 20140523121810) do
     t.integer  "round_id"
     t.integer  "team_1_id"
     t.integer  "team_2_id"
-    t.integer  "winner_id"
-    t.integer  "winner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,8 +51,14 @@ ActiveRecord::Schema.define(version: 20140523121810) do
   create_table "rounds", force: true do |t|
     t.integer  "round_number"
     t.boolean  "outround"
+    t.integer  "winner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "school_affiliations", force: true do |t|
+    t.integer "judge_id"
+    t.integer "school_id"
   end
 
   create_table "schools", force: true do |t|
@@ -72,7 +76,7 @@ ActiveRecord::Schema.define(version: 20140523121810) do
   end
 
   create_table "speaker_points", force: true do |t|
-    t.integer  "pairing_id"
+    t.integer  "round_id"
     t.integer  "debater_id"
     t.integer  "speaker_points"
     t.datetime "created_at"
@@ -83,6 +87,7 @@ ActiveRecord::Schema.define(version: 20140523121810) do
     t.string   "name"
     t.integer  "school_id"
     t.integer  "team_1_count"
+    t.integer  "wins"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

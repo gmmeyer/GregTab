@@ -4,9 +4,7 @@ class CreatePairings < ActiveRecord::Migration
       t.integer :round_id
       t.integer :team_1_id
       t.integer :team_2_id
-      t.integer :winner_id
-      t.integer :winner
-
+      
       t.timestamps
     end
   end

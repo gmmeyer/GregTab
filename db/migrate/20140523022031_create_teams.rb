@@ -4,6 +4,7 @@ class CreateTeams < ActiveRecord::Migration
     	t.string :name
     	t.integer :school_id
     	t.integer :team_1_count
+    	t.integer :wins
 
       t.timestamps
     end
