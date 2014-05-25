@@ -3,7 +3,6 @@ class Scratch < ActiveRecord::Base
 	belongs_to :team
 
 	def self.create_affiliation_scratches(judge, school)
-
 	end
 
 end
