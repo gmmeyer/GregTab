@@ -5,9 +5,12 @@ class SchoolAffiliations < ActiveRecord::Migration
   		# This might be able to be polymorphic, not yet though.
   		# But, hybrids would be very easily supported through that.
 
-  		t.integer :judge_id
-  		t.integer :school_id
+      t.integer :school_id
+      t.integer :affiliatable_id
+      t.string :affiliatable_type
+      t.integer :affiliation_id
 
+      t.timestamps
   	end
   end
 end
