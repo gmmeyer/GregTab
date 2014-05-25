@@ -1,21 +1,30 @@
 class Debater < ActiveRecord::Base
 
-	belongs_to :team
-	belongs_to :school
+	attr_accessor :school
 
+	belongs_to :team
+
+	has_many :schools, through: :affiliations
+	has_many :affiliations, as: :affiliatable, inverse_of: :affiliatable, dependent: :destroy
 	has_many :rounds, through: :pairings
 	has_many :pairings, through: :team
 	has_many :speaker_points
 	has_many :ranks
-	has_many :wins, through: :rounds
+
+	has_many :wins, through: :pairings
 	# ruby operates by convention
 	# but also doesn't like weird spelling rules...
 	# I find this funny.
-	has_many :losses, through: :rounds
+	has_many :losses, through: :pairings
 
-	validates :team_id, presence: true
-	validates :school_id, presence: true
-	validates :name, presence: true
+	validates :team_id, :school, :name, presence: true
+
+	after_commit :set_affiliation
+
+	def set_affiliation
+		affiliation = self.affiliations.event(:judge)
+		affiliation.school = self.school
+	end
 
 	
 
