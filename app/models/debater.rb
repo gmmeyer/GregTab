@@ -10,6 +10,7 @@ class Debater < ActiveRecord::Base
 	has_many :pairings, through: :team
 	has_many :speaker_points
 	has_many :ranks
+	has_one :seed
 
 	has_many :wins, through: :pairings
 	# ruby operates by convention
@@ -18,6 +19,7 @@ class Debater < ActiveRecord::Base
 	has_many :losses, through: :pairings
 
 	validates :team_id, :school, :name, presence: true
+	before_validation :ensure_seed
 
 	after_commit :set_affiliation
 
@@ -26,6 +28,8 @@ class Debater < ActiveRecord::Base
 		affiliation.school = self.school
 	end
 
-	
+	def ensure_seed
+		self.seed ||= self.seed.new(seed_type: 0)
+	end
 
 end

@@ -8,5 +8,8 @@ class Team < ActiveRecord::Base
 	has_many :rounds, through: :pairings
 	has_many :pairings, through: :pairing_memberships
 	has_many :pairing_memberships
+	has_many :wins, through: :debaters
+	has_many :losses, through: :debaters
+	has_many :seeds, through: :debaters
 
 end
