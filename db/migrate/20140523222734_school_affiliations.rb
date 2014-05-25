@@ -8,7 +8,7 @@ class SchoolAffiliations < ActiveRecord::Migration
       t.integer :school_id
       t.integer :affiliatable_id
       t.string :affiliatable_type
-      t.integer :affiliation_id
+      t.integer :role_id
 
       t.timestamps
   	end
