@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	attr_reader :password
 
 	before_validation :ensure_token
+	has_many :tournaments, foreign_key: :user_id
 	validates :password_digest, presence: true
 	validates :password, length: { minimum: 6, allow_nil: true }
 	validates :token, presence: true, uniqueness: true

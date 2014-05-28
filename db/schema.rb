@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140528040831) do
   create_table "pairing_members", force: true do |t|
     t.integer  "pairing_id"
     t.integer  "team_id"
-    t.integer  "team_role"
+    t.integer  "side"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -127,6 +127,8 @@ ActiveRecord::Schema.define(version: 20140528040831) do
 
   create_table "tournaments", force: true do |t|
     t.datetime "date"
+    t.integer  "user_id"
+    t.integer  "host_school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

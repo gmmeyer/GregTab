@@ -8,6 +8,10 @@ class Result < ActiveRecord::Base
 	validates :type, uniqueness: {scope: :pairing_id}
 	validate :check_scores
 
+	def initialize
+		raise("Use win or loss. Do not use result directly")
+	end
+
 
 	def check_scores
 		add.errors("You must include the ranks before saving the result") if self.ranks.length != 4

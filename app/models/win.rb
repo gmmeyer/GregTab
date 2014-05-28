@@ -1,5 +1,7 @@
 class Win < Result
-	@type = 1
 
+	def initialize
+		@type = 1
+	end
 
 end

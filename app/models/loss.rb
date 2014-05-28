@@ -1,5 +1,7 @@
 class Loss < Result
-	@type = 0
 
-
+	def initialize
+		@type = 0
+	end
+	
 end
