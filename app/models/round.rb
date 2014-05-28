@@ -12,11 +12,19 @@ class Round < ActiveRecord::Base
 
 	def pair_round
 
-		rounds = self.tournament.rounds_count
+		prior_rounds_count = self.tournament.rounds_count
 
-		rounds.times do |bracket|
+		prior_rounds_count.times do |bracket|
 
-			teams = self.tournament.teams.where("wins_count = bracket").includes(:wins).includes(:losses).includes(rounds: [:judges])
+			teams = self.tournament.teams.includes(:wins).includes(:losses).includes(rounds: [:judges]).where("wins_count = bracket")
+
+			if teams % 2 == 1
+
+				teams << self.tournament.teams.includes(:wins).includes(:losses).includes(rounds: [:judges]).where("wins_count = ?", bracket - 1).first
+			end
+
+			rounds = teams.length / 2
+
 
 		end
 
