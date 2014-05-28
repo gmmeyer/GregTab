@@ -9,5 +9,4 @@ class PairingMember < ActiveRecord::Base
 	end
 
 	belongs_to :pairing
-	belongs_to :team
 end

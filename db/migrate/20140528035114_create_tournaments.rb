@@ -4,6 +4,7 @@ class CreateTournaments < ActiveRecord::Migration
     	t.datetime :date
     	t.integer :user_id
     	t.integer :host_school_id
+    	t.integer :rounds_count
 
       t.timestamps
     end

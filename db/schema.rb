@@ -119,8 +119,10 @@ ActiveRecord::Schema.define(version: 20140528040831) do
 
   create_table "teams", force: true do |t|
     t.string   "name"
-    t.integer  "wins"
-    t.integer  "losses"
+    t.integer  "wins_count"
+    t.integer  "losses_count"
+    t.integer  "govs_count"
+    t.integer  "opps_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -129,6 +131,7 @@ ActiveRecord::Schema.define(version: 20140528040831) do
     t.datetime "date"
     t.integer  "user_id"
     t.integer  "host_school_id"
+    t.integer  "rounds_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

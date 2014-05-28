@@ -1,6 +1,5 @@
 class Result < ActiveRecord::Base
 	belongs_to :pairing
-	belongs_to :team
 	has_many :speaker_points
 	has_many :ranks
 
