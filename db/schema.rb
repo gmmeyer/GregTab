@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20140528040831) do
   create_table "ranks", force: true do |t|
     t.integer  "result_id"
     t.integer  "debater_id"
+    t.integer  "judge_id"
+    t.integer  "pairing_id"
     t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -112,6 +114,8 @@ ActiveRecord::Schema.define(version: 20140528040831) do
   create_table "speaker_points", force: true do |t|
     t.integer  "result_id"
     t.integer  "debater_id"
+    t.integer  "judge_id"
+    t.integer  "pairing_id"
     t.integer  "speaker_points"
     t.datetime "created_at"
     t.datetime "updated_at"
