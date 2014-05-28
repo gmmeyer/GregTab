@@ -42,7 +42,7 @@ class Round < ActiveRecord::Base
 		if teams.length == 1
 			Gov.create(pairing_id: pairing.id, team_id: teams.first.id)
 		else
-			teams.sort(|a,b| a.govs_count <=> b.govs_count)
+			teams = teams.sort(|a,b| a.govs_count <=> b.govs_count)
 			Gov.create(team_id: teams.pop.id, pairing_id: pairing.id)
 			Opp.create(team_id: teams.shift.id, pairing_id: pairing.id)
 		end
