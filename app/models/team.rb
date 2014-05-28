@@ -17,5 +17,4 @@ class Team < ActiveRecord::Base
 	has_many :govs
 	has_many :opps
 
-
 end

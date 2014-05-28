@@ -11,7 +11,6 @@ class Round < ActiveRecord::Base
 	end
 
 	def pair_round
-
 		prior_rounds_count = self.tournament.rounds_count
 
 		prior_rounds_count.times do |bracket|
@@ -33,11 +32,9 @@ class Round < ActiveRecord::Base
 			pairings.times do |pairing|
 				create_pairing([teams.pop, teams.shift])
 			end
-
 		end
 
-
-		
+		nil
 	end
 
 	def create_pairing(teams)
@@ -49,6 +46,8 @@ class Round < ActiveRecord::Base
 			Gov.create(team_id: teams.pop.id, pairing_id: pairing.id)
 			Opp.create(team_id: teams.shift.id, pairing_id: pairing.id)
 		end
+
+		nil
 	end
 
 	def sort_teams(teams)

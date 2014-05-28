@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 20140528040831) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "token"
+    t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

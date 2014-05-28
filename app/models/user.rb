@@ -18,6 +18,13 @@ class User < ActiveRecord::Base
 		SecureRandom::urlsafe_base64(32)
 	end
 
+	def add_school(school)
+
+		self.school_id = school.id
+		self.save
+
+	end
+
 	def is_password(unencrypted_password)
 		BCrypt::Password.new(self.password_digest).is_password?(unencrypted_password)
 	end

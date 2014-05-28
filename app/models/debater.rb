@@ -24,7 +24,7 @@ class Debater < ActiveRecord::Base
 	after_commit :set_affiliation
 
 	def set_affiliation
-		affiliation = self.affiliations.event(:judge)
+		affiliation = self.affiliations.role(:debater)
 		affiliation.school = self.school
 	end
 

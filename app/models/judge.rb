@@ -17,7 +17,7 @@ class Judge < ActiveRecord::Base
 
 
 	def set_affiliation
-		affiliation = self.affiliations.event(:judge)
+		affiliation = self.affiliations.role(:judge)
 		affiliation.school = self.school
 	end
 
