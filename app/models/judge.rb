@@ -7,6 +7,7 @@ class Judge < ActiveRecord::Base
 	has_many :pairings
 	has_many :schools, through: :affiliations
 	has_many :affiliations, as: :affiliatable, inverse_of: :affiliatable, dependent: :destroy
+	has_many :registrations, as: :registerable, inverse_of: :registerable, dependent: :destroy
 
 	validates :rank, :school, :name, presence: true
 	validates :rank, inclusion: { in: (0..10) }

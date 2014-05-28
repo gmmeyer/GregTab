@@ -8,9 +8,9 @@ class Debater < ActiveRecord::Base
 	has_many :affiliations, as: :affiliatable, inverse_of: :affiliatable, dependent: :destroy
 	has_many :rounds, through: :pairings
 	has_many :pairings, through: :team
-	has_many :speaker_points
-	has_many :ranks
-	has_one :seed
+	has_many :speaker_points, dependent: :destroy
+	has_many :ranks, dependent: :destroy
+	has_one :seed, dependent: :destroy
 
 	has_many :wins, through: :pairings
 	# ruby operates by convention
