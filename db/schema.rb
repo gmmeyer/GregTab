@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20140528040831) do
     t.integer  "losses_count"
     t.integer  "govs_count"
     t.integer  "opps_count"
+    t.boolean  "recieved_bye"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
