@@ -1,7 +1,17 @@
 class PairingsController < ApplicationController
 
 
+  def show
+    @pairing = Pairing.find(:id)
+  end
 
+  def edit
+    @pairing = Pairing.find(:id)
+  end
+
+  def update
+
+  end
 
   private
   def pairings_param
