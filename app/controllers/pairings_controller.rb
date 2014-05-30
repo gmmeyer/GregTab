@@ -5,8 +5,8 @@ class PairingsController < ApplicationController
 
   private
   def pairings_param
-    params.require(:pairing).permit(:)
-
+    params.require(:pairing).permit(:pairing_rank, :round_id)
+  end
 
   # Speaks: gov 1, gov 2, opp 1, opp 2
   # Ranks: same as above
