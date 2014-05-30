@@ -1,5 +1,7 @@
 class ResultsController < ApplicationController
 
+  
+
   def add_speaker_points(debater, points)
     debater.speaker_points.create(pairing_id: result.id, judge_id: self.pairing.judge.id, result_id: result.id)
   end

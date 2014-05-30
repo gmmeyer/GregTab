@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby "2.1.2"
 
 gem 'rails'
 gem 'pg'
@@ -10,17 +11,22 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'bcrypt'
+gem 'angularjs-rails'
+gem 'ngannotate-rails'
+gem 'angular-rails-templates'
+gem 'lodash-rails'
+gem 'angular-ui-bootstrap-rails'
 
 group :doc do
-	gem 'sdoc'
+  gem 'sdoc'
 end
 
 group :production do
-	gem 'rails_12factor'
+  gem 'rails_12factor'
 end
 
 group :development do
-	gem 'spring'
+  gem 'spring'
   gem 'rspec'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -34,4 +40,3 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
 end
-

@@ -1,6 +1,8 @@
 class PairingsController < ApplicationController
 
 
+  
+
 
   # Speaks: gov 1, gov 2, opp 1, opp 2
   # Ranks: same as above
