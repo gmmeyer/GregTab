@@ -1,0 +1,3 @@
+class WinsController < ResultsController
+
+end

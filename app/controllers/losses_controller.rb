@@ -1,0 +1,3 @@
+class LossesController < ResultsController
+
+end
