@@ -1,7 +1,11 @@
 class PairingsController < ApplicationController
 
 
-  
+
+
+  private
+  def pairings_param
+    params.require(:pairing).permit(:)
 
 
   # Speaks: gov 1, gov 2, opp 1, opp 2

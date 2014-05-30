@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20140528040831) do
 
   create_table "pairings", force: true do |t|
     t.integer  "round_id"
-    t.integer  "side"
     t.integer  "pairing_rank"
     t.datetime "created_at"
     t.datetime "updated_at"

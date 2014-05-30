@@ -45,7 +45,6 @@ class RoundsController < ApplicationController
   end
 
   def pullup_or_bye(teams, bracket)
-
     if teams % 2 == 1
       # Are there an odd number of teams in the bracket?
       if bracket != 0
@@ -79,10 +78,5 @@ class RoundsController < ApplicationController
   def sort_teams(teams)
     teams.sort(|a,b| a.speaker_points.total_speaker_points <=> b.speaker_points.total_speaker_points)
   end
-
-
-
-
-
 
 end
