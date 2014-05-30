@@ -1,10 +1,40 @@
 class RoundsController < ApplicationController
 
+  def new
+    @round = Round.new
+  end
 
+  def create
+    @round = Round.new(round_params)
+    if @round.save
+      pair_round
+      redirect_to round_url
+    else
+      flash[:errors] = @round.errors.full_messages
+      render :new
+    end
+  end
+
+  def update
+  end
+
+  def show
+  end
+
+  def delete
+  end
+
+  private
+  def round_params
+    params.require(:round).permit(:tournament_id, :round_number, :outround)
+  end
+
+  # pairing logic
 
   def pair_round
-    prior_rounds_count = self.tournament.rounds_count
+    prior_rounds_count = @round.tournament.rounds_count
     pair_by_bracket(prior_rounds_count)
+    assign_judges
     nil
   end
 
@@ -26,8 +56,6 @@ class RoundsController < ApplicationController
     nil
   end
 
-
-  private
   def pair_by_bracket(prior_rounds_count)
     bracket = prior_rounds_count
 
@@ -37,9 +65,11 @@ class RoundsController < ApplicationController
                         .includes(:speaker_points).includes(:ranks)
                         .order("speaker_points.speaker_points DESC")
                         .where("wins_count = bracket")
+
       teams = teams.sort_teams
       teams = pullup_or_bye(teams, bracket)
       pairings = teams.length / 2
+
       pairings.times do |pairing|
         create_pairing([teams.pop, teams.shift], bracket)
       end
@@ -60,6 +90,7 @@ class RoundsController < ApplicationController
                             .includes(:losses).includes(rounds: [:judges])
                             .where("wins_count = ?", bracket - 1)
                             .order("speaker_points.speaker_points DESC").last
+
       else
         # If it is the bottom bracket, give the bottom team the bye.
         create_pairing([teams.pop])
@@ -71,6 +102,7 @@ class RoundsController < ApplicationController
 
   def create_pairing(teams, bracket)
     pairing = Pairing.create(round_id: @round.id, pairing_rank: bracket)
+
     if teams.length == 1
       Gov.create(pairing_id: pairing.id, team_id: teams.first.id)
       teams.first.recieved_bye == true
