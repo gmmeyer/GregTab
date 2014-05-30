@@ -4,8 +4,24 @@ class RoundsController < ApplicationController
 
   def pair_round
     prior_rounds_count = self.tournament.rounds_count
-
     pair_by_bracket(prior_rounds_count)
+    nil
+  end
+
+  def assign_judges
+    pairings = @round.pairings.order("pairing_rank DESC")
+    # refactor this once a mechanism for judge check-in is designed
+    judges = @round.tournament.judges.order("rank DESC").all
+    until pairings.empty
+      pairing = pairings.shift
+      judges.each do |judge|
+        if judge.can_judge(pairing)
+          pairing.judge_id = judge.id
+          pairing.save
+          break
+        end
+      end
+    end
 
     nil
   end
@@ -13,19 +29,15 @@ class RoundsController < ApplicationController
   def pair_by_bracket(prior_rounds_count)
     bracket = prior_rounds_count
     while bracket >= 0
-
       teams = @round.tournament.teams.includes(:wins).includes(:losses).includes(rounds: [:judges]).includes(:speaker_points).includes(:ranks).where("wins_count = bracket")
       teams = teams.sort_teams
-
       teams = pullup_or_bye(teams, bracket)
-
       pairings = teams.length / 2
-
       pairings.times do |pairing|
         create_pairing([teams.pop, teams.shift], bracket)
       end
 
-      backet -= 1
+      bracket -= 1
     end
 
   end
@@ -66,25 +78,6 @@ class RoundsController < ApplicationController
     teams.sort(|a,b| a.speaker_points.total_speaker_points <=> b.speaker_points.total_speaker_points)
   end
 
-  def assign_judges
-    pairings = @round.pairings.order("pairing_rank DESC")
-    # refactor this once a mechanism for judge check-in is designed
-    judges = @round.tournament.judges.order("rank DESC").all
-
-    until pairings.empty
-      pairing = pairings.shift
-      judges.each do |judge|
-
-        if judge.can_judge(pairing)
-          pairing.judge_id = judge.id
-          pairing.save
-          break
-        end
-
-      end
-    end
-
-  end
 
 
 
