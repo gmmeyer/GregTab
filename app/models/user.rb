@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :token, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
+  validate :password_confirmation_check
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
@@ -45,6 +46,12 @@ class User < ActiveRecord::Base
   private
   def ensure_token
     self.token ||= self.class.generate_token
+  end
+
+  def password_confirmation_check
+    unless self.password == self.password_confirmation
+      add.errors("Your password and password confirmation must match.")
+    end
   end
 
 end
