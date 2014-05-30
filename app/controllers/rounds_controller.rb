@@ -30,8 +30,13 @@ class RoundsController < ApplicationController
   private
   def pair_by_bracket(prior_rounds_count)
     bracket = prior_rounds_count
+
     while bracket >= 0
-      teams = @round.tournament.teams.includes(:wins).includes(:losses).includes(rounds: [:judges]).includes(:speaker_points).includes(:ranks).where("wins_count = bracket")
+      teams = @round.tournament.teams.includes(:wins)
+                        .includes(:losses).includes(rounds: [:judges])
+                        .includes(:speaker_points).includes(:ranks)
+                        .order("speaker_points.speaker_points DESC")
+                        .where("wins_count = bracket")
       teams = teams.sort_teams
       teams = pullup_or_bye(teams, bracket)
       pairings = teams.length / 2
@@ -42,6 +47,7 @@ class RoundsController < ApplicationController
       bracket -= 1
     end
 
+    nil
   end
 
   def pullup_or_bye(teams, bracket)
@@ -50,7 +56,10 @@ class RoundsController < ApplicationController
       if bracket != 0
         # If this isn't the bottom bracket,
         # add the bottom team from the lower bracket to this one.
-        teams << @round.tournament.teams.includes(:wins).includes(:losses).includes(rounds: [:judges]).where("wins_count = ?", bracket - 1).order("").last
+        teams << @round.tournament.teams.includes(:wins)
+                            .includes(:losses).includes(rounds: [:judges])
+                            .where("wins_count = ?", bracket - 1)
+                            .order("speaker_points.speaker_points DESC").last
       else
         # If it is the bottom bracket, give the bottom team the bye.
         create_pairing([teams.pop])
