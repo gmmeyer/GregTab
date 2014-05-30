@@ -85,7 +85,8 @@ class RoundsController < ApplicationController
   end
 
   def sort_teams(teams)
-    teams.sort(|a,b| a.speaker_points.total_speaker_points <=> b.speaker_points.total_speaker_points)
+    teams.sort(|a,b| a.speaker_points.total_speaker_points <=> 
+                                 b.speaker_points.total_speaker_points)
   end
 
 end
