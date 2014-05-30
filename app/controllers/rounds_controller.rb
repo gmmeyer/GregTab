@@ -26,6 +26,8 @@ class RoundsController < ApplicationController
     nil
   end
 
+
+  private
   def pair_by_bracket(prior_rounds_count)
     bracket = prior_rounds_count
     while bracket >= 0
