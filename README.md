@@ -9,8 +9,14 @@ That's a bad reason for doing something that'll make you as upset as this will. 
 
 Right now, it won't do anything, anyway. But, some day it might and I might not update this readme to reflect that. So, it might look like it works, and it might even work until it crashes, horribly. And, really, I won't help you.
 
+## ToDos:
 
-##License
+* Move controller logic to the controller from result, round and pairing.
+* Make views.
+* Tests, tests, tests.
+
+
+## License
 
 The source code is liscensed under the [GPL Liscense](/LICENSE).
 
