@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :school
 
   post '/pairings/:id/result', to 'pairings#create_result'
-    
+  get 'pairings/:id/double_loss', to 'pairings#double_loss'  
 
 end

@@ -2,20 +2,23 @@ class PairingsController < ApplicationController
 
 
   def show
-    @pairing = Pairing.find(:id)
+    @pairing = Pairing.find(params[:id])
   end
 
   def edit
-    @pairing = Pairing.find(:id)
+    @pairing = Pairing.find(params[:id])
+  end
+
+  def create
   end
 
   def update
   end
 
-  def create_result(winner, loser)
-    @pairing = Pairing.find(:id)
-    create_win(winner)
-    create_loss(loser)
+  def create_result
+    @pairing = Pairing.find(params[:id])
+    create_win(params[:winner][:id])
+    create_loss(params[:loser][:id])
   end
 
 
@@ -25,12 +28,12 @@ class PairingsController < ApplicationController
       opp.losses.new(pairing_id: @pairing.id)
     ]
   end
-  
+
   private
   def pairings_param
     params.require(:pairing).permit(:pairing_rank, :round_id)
   end
-  
+
   # Speaks: gov 1, gov 2, opp 1, opp 2
   # Ranks: same as above
   def create_win(team)
