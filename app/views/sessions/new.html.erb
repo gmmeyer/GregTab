@@ -1,0 +1,29 @@
+<section class="login-page">
+
+  <form class='form login' action="<%= session_url %>" method="post" accept-charset="utf-8">
+
+    <h2 class="page-title">Login!</h2>
+
+    <%= token_tag nil %>
+
+    <p class='form-field input input-field'>
+      <label for='username'>
+        username:
+      </label>
+        <input class='' id='username' type='text'
+          name='user[username]' value=''>
+    </p>
+
+    <p class='form-field input input-field'>
+      <label for='password'>
+        password:
+        </label>
+        <input class='' id='password' type='password'
+          name='user[password]' value=''>
+    </p>
+
+    <p class='login-button button form-field'>
+      <input class='' type="submit" value="Log In!">
+    </p>
+  </form>
+</section>
