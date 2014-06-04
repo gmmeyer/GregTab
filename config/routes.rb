@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :tournament, only: :show
   resources :round, only: [:show, :index,:update,:destroy]
 
-  resources :user
+  resources :users
 
   resources :tournament, only: [:new, :create, :update, :destroy] do
     resources :round, only: [:new, :create]
