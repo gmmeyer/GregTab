@@ -16,6 +16,7 @@ gem 'ngannotate-rails'
 gem 'angular-rails-templates'
 gem 'lodash-rails'
 gem 'angular-ui-bootstrap-rails'
+gem 'cucumber'
 
 group :doc do
   gem 'sdoc'

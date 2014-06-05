@@ -86,6 +86,8 @@ class RoundsController < ApplicationController
       if bracket != 0
         # If this isn't the bottom bracket,
         # add the bottom team from the lower bracket to this one.
+
+        # how do you do selection within it while maintaining ordering?
         teams << @round.tournament.teams.includes(:wins)
                             .includes(:losses).includes(rounds: [:judges])
                             .where("wins_count = ?", bracket - 1)
@@ -119,6 +121,12 @@ class RoundsController < ApplicationController
   def sort_teams(teams)
     teams.sort(|a,b| a.speaker_points.total_speaker_points <=> 
                                  b.speaker_points.total_speaker_points)
+  end
+
+  def order_teams(teams)
+
+    # refactor this, pulling them all and then sorting them.
+
   end
 
 end
